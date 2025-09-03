@@ -3,10 +3,12 @@ import React from 'react';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
+  const languages = ['en', 'vi']; // list of supported languages
 
   const toggleLanguage = () => {
-    const nextLang = i18n.language === 'en' ? 'vi' : 'en';
-    i18n.changeLanguage(nextLang);
+    const currentIndex = languages.indexOf(i18n.language);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    i18n.changeLanguage(languages[nextIndex]);
   };
 
   return (
@@ -15,7 +17,7 @@ const LanguageSwitcher = () => {
         onClick={toggleLanguage}
         className="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 transition"
       >
-        {i18n.language === 'en' ? 'English' : 'Vietnamese'}
+        {i18n.language === 'en' ? 'Vietnamese' : 'English'}
       </button>
     </div>
   );

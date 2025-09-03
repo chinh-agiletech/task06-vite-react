@@ -3,7 +3,7 @@ import { Form, Input, Button } from "antd";
 import { useRequest } from "ahooks";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../SwitcherLanguage";
+import LanguageSwitcher from "../UI/SwitcherLanguage";
 import styles from "./index.module.css";
 
 const LoginComponent = () => {
@@ -19,7 +19,8 @@ const LoginComponent = () => {
     async (values: { username: string }) => loginApi(values),
     {
       manual: true,
-      onSuccess: () => {
+      onSuccess: (data) => {
+        localStorage.setItem('username', data.username);
         navigate("/dashboard");
       },
     }
@@ -30,10 +31,11 @@ const LoginComponent = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.formLogin}>
+        <LanguageSwitcher />
+
         <h1 className="flex justify-center mb-4 font-bold text-xl">
           {t("title")}
         </h1>
-        <LanguageSwitcher />
         <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             label={t("username")}
