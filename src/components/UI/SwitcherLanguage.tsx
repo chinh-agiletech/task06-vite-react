@@ -1,6 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
-
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const languages = ['en', 'vi']; // list of supported languages
