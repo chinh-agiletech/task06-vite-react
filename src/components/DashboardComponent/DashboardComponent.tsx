@@ -2,10 +2,12 @@ import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import styles from "./index.module.css";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const DashboardComponent = () => {
   const navigate = useNavigate();
   const [username, setUsername] = React.useState<string>("");
+  const { t } = useTranslation("dashboard");
 
   const handleLogout = () => {
     localStorage.removeItem("username");
@@ -24,10 +26,10 @@ const DashboardComponent = () => {
           <UserOutlined style={{ marginRight: 4 }} />
           <span className={styles.username}>{username}</span>
           <span className={styles.logout} onClick={handleLogout}>
-            Logout
+            {t("logout")}
           </span>
         </div>
-        <div className={styles.title}>Post</div>
+        <div className={styles.title}>{t("title")}</div>
         <div className={styles.list}>
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className={styles.item}>
